@@ -88,7 +88,7 @@ def assemble(scene_files: list, narr_files: list, durations: list, scene_info: l
     for k in range(1, n):
         parts.append(f"{v}[{k}:v]xfade=transition=fade:duration={T}:offset={starts[k]:.3f}[x{k}]")
         v = f"[x{k}]"
-    parts.append(f"{v}ass=captions.ass[vout]")
+    parts.append(f"{v}ass=captions.ass,format=yuv420p[vout]")
 
     for i in range(n):
         ms = int((starts[i] + LEAD) * 1000)

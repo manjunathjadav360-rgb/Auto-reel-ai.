@@ -4,7 +4,7 @@
   var app = document.getElementById("app");
   var nav = document.getElementById("nav");
   var KEY = "autoreel.cfg";
-  var DEFAULTS = { owner: "manjunathjadav360-rgb", repo: "Auto-reel-ai", branch: "main", token: "" };
+  var DEFAULTS = { owner: "manjunathjadav360-rgb", repo: "Auto-reel-ai.", branch: "main", token: "" };
   var TABS = [["review", "Review"], ["library", "Library"], ["ideas", "Ideas"], ["create", "Create"], ["settings", "Settings"]];
 
   function loadCfg() {

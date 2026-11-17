@@ -70,7 +70,7 @@ def _extract_json(text: str) -> Any:
 
 
 class GeminiClient:
-    def __init__(self, api_key: str, models=("gemini-2.5-flash", "gemini-2.5-flash-lite"), *,
+    def __init__(self, api_key: str, models=("gemini-3.8-flash", "gemini-3.5-flash-lite"), *,
                  transport: Callable = default_transport, sleep: Callable = time.sleep,
                  max_attempts: int = 3, max_wait: float = 60.0):
         if not api_key:

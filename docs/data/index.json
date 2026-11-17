@@ -1,6 +1,17 @@
 {
   "projects": [
     {
+      "id": "20261117-040925-action",
+      "title": "Why Action Precedes Motivation",
+      "topic": "Action",
+      "style": "educational",
+      "duration_target": 30,
+      "status": "needs_review",
+      "created_at": "2026-11-17T04:09:25Z",
+      "qa_status": "warn",
+      "thumbnail_url": "https://github.com/manjunathjadav360-rgb/Auto-reel-ai./releases/download/project-20261117-040925-action/thumbnail.jpg"
+    },
+    {
       "id": "20261117-040136-storytelling-video",
       "title": "Storytelling video",
       "topic": "Storytelling video",

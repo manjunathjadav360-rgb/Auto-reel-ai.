@@ -1,0 +1,328 @@
+{
+  "id": "20261117-040925-action",
+  "created_at": "2026-11-17T04:09:25Z",
+  "status": "needs_review",
+  "topic": "Action",
+  "style": "educational",
+  "duration_target": 30,
+  "title": "Why Action Precedes Motivation",
+  "error": null,
+  "approval": {
+    "decision": null,
+    "at": null,
+    "note": ""
+  },
+  "log": [
+    {
+      "stage": "script",
+      "ok": true,
+      "seconds": 19.2,
+      "message": ""
+    },
+    {
+      "stage": "narration",
+      "ok": true,
+      "seconds": 4.2,
+      "message": ""
+    },
+    {
+      "stage": "visuals",
+      "ok": true,
+      "seconds": 1.6,
+      "message": ""
+    },
+    {
+      "stage": "music",
+      "ok": true,
+      "seconds": 0.5,
+      "message": ""
+    },
+    {
+      "stage": "render scenes",
+      "ok": true,
+      "seconds": 10.5,
+      "message": ""
+    },
+    {
+      "stage": "assemble",
+      "ok": true,
+      "seconds": 12.8,
+      "message": ""
+    },
+    {
+      "stage": "thumbnail",
+      "ok": true,
+      "seconds": 0.2,
+      "message": ""
+    },
+    {
+      "stage": "quality check",
+      "ok": true,
+      "seconds": 1.6,
+      "message": ""
+    }
+  ],
+  "script": {
+    "title": "Why Action Precedes Motivation",
+    "category": "educational",
+    "music_mood": "calm",
+    "scenes": [
+      {
+        "narration": "We usually wait for motivation before taking action, but neuroscience shows the brain works in reverse.",
+        "on_screen_text": "Action comes before motivation",
+        "search_query": "person sitting desk thinking",
+        "fallback_query": "person sitting chair"
+      },
+      {
+        "narration": "Movement actually triggers motivation, not the other way around.",
+        "on_screen_text": "",
+        "search_query": "tying running shoe laces",
+        "fallback_query": "tying shoe"
+      },
+      {
+        "narration": "When your body starts a task, dopamine releases in response to progress.",
+        "on_screen_text": "Dopamine follows progress",
+        "search_query": "hands typing on keyboard",
+        "fallback_query": "typing laptop"
+      },
+      {
+        "narration": "Psychologists call this behavioral activation.",
+        "on_screen_text": "Behavioral activation",
+        "search_query": "writing notebook pen",
+        "fallback_query": "hand writing"
+      },
+      {
+        "narration": "Even moving for two minutes alters your brain chemistry.",
+        "on_screen_text": "Just two minutes",
+        "search_query": "stopwatch ticking hand",
+        "fallback_query": "clock ticking"
+      },
+      {
+        "narration": "You do not need to feel ready to begin; beginning makes you ready.",
+        "on_screen_text": "Begin before you feel ready",
+        "search_query": "person walking outdoors morning",
+        "fallback_query": "walking path"
+      }
+    ],
+    "caption": "Waiting until you feel like doing something often guarantees it will never get done. \n\nIn psychology, behavioral activation shows that physical action comes first, and the emotional feeling of motivation follows. Starting a tiny physical step signals your brain that work is underway, kicking off dopamine release.\n\nWhat is one small step you can take today without waiting to feel ready?",
+    "hashtags": [
+      "#psychologyfacts",
+      "#behavioralscience",
+      "#habits",
+      "#mindsetshift",
+      "#productivitytips",
+      "#brainscience",
+      "#motivationmyth",
+      "#dopamine",
+      "#personaldevelopment"
+    ],
+    "claims_to_verify": [
+      "Dopamine release occurs in response to taking action and tracking task progress.",
+      "Behavioral activation principles demonstrate that activity precedes mood improvement and motivation."
+    ],
+    "disclaimer": ""
+  },
+  "scene_visuals": [
+    {
+      "type": "video",
+      "query": "person sitting desk thinking",
+      "asset": {
+        "provider": "pixabay",
+        "asset_id": "326218",
+        "kind": "video",
+        "page_url": "https://pixabay.com/videos/id-326218/",
+        "creator": "TonyDias7",
+        "creator_url": "https://pixabay.com/users/TonyDias7-26930749/",
+        "width": 1080,
+        "height": 1920,
+        "duration": 12.0,
+        "license_name": "Pixabay Content License"
+      }
+    },
+    {
+      "type": "video",
+      "query": "tying running shoe laces",
+      "asset": {
+        "provider": "pixabay",
+        "asset_id": "206294",
+        "kind": "video",
+        "page_url": "https://pixabay.com/videos/id-206294/",
+        "creator": "Shravan1991",
+        "creator_url": "https://pixabay.com/users/Shravan1991-41909299/",
+        "width": 1080,
+        "height": 1920,
+        "duration": 15.0,
+        "license_name": "Pixabay Content License"
+      }
+    },
+    {
+      "type": "video",
+      "query": "hands typing on keyboard",
+      "asset": {
+        "provider": "pixabay",
+        "asset_id": "180776",
+        "kind": "video",
+        "page_url": "https://pixabay.com/videos/id-180776/",
+        "creator": "Darioguzben",
+        "creator_url": "https://pixabay.com/users/Darioguzben-39470054/",
+        "width": 1080,
+        "height": 2048,
+        "duration": 13.0,
+        "license_name": "Pixabay Content License"
+      }
+    },
+    {
+      "type": "video",
+      "query": "writing notebook pen",
+      "asset": {
+        "provider": "pixabay",
+        "asset_id": "344179",
+        "kind": "video",
+        "page_url": "https://pixabay.com/videos/id-344179/",
+        "creator": "MoonpetalMedia",
+        "creator_url": "https://pixabay.com/users/MoonpetalMedia-54307928/",
+        "width": 1080,
+        "height": 1920,
+        "duration": 8.0,
+        "license_name": "Pixabay Content License"
+      }
+    },
+    {
+      "type": "video",
+      "query": "stopwatch ticking hand",
+      "asset": {
+        "provider": "pixabay",
+        "asset_id": "6200",
+        "kind": "video",
+        "page_url": "https://pixabay.com/videos/id-6200/",
+        "creator": "McZerrill",
+        "creator_url": "https://pixabay.com/users/McZerrill-333364/",
+        "width": 1920,
+        "height": 1080,
+        "duration": 10.0,
+        "license_name": "Pixabay Content License"
+      }
+    },
+    {
+      "type": "video",
+      "query": "person walking outdoors morning",
+      "asset": {
+        "provider": "pixabay",
+        "asset_id": "258794",
+        "kind": "video",
+        "page_url": "https://pixabay.com/videos/id-258794/",
+        "creator": "Matthias_Groeneveld",
+        "creator_url": "https://pixabay.com/users/Matthias_Groeneveld-4535957/",
+        "width": 1080,
+        "height": 1920,
+        "duration": 44.0,
+        "license_name": "Pixabay Content License"
+      }
+    }
+  ],
+  "narration": {
+    "engine": "piper",
+    "voice": "en_US-lessac-medium",
+    "license_note": "Piper voice 'en_US-lessac-medium'. Voice-model licences differ: read the MODEL_CARD for this voice in huggingface.co/rhasspy/piper-voices before commercial use (not verified by this project)."
+  },
+  "music": {
+    "source": "synthesised",
+    "mood": "calm",
+    "rights": "Original audio generated by AUTO REEL AI; no third-party rights."
+  },
+  "qa": {
+    "status": "warn",
+    "checks": [
+      {
+        "name": "codec",
+        "status": "pass",
+        "detail": "h264/yuv420p"
+      },
+      {
+        "name": "resolution",
+        "status": "pass",
+        "detail": "1080x1920 (need 1080x1920)"
+      },
+      {
+        "name": "frame rate",
+        "status": "pass",
+        "detail": "30.0 fps"
+      },
+      {
+        "name": "audio track",
+        "status": "pass",
+        "detail": "present"
+      },
+      {
+        "name": "duration",
+        "status": "pass",
+        "detail": "26.4s vs 30s target"
+      },
+      {
+        "name": "file size",
+        "status": "pass",
+        "detail": "16.3 MB"
+      },
+      {
+        "name": "loudness",
+        "status": "pass",
+        "detail": "mean -18.0 dB, peak -1.1 dB"
+      },
+      {
+        "name": "clipping",
+        "status": "pass",
+        "detail": "peak -1.1 dB"
+      },
+      {
+        "name": "black frames",
+        "status": "pass",
+        "detail": "0.0s black"
+      },
+      {
+        "name": "stock visuals",
+        "status": "pass",
+        "detail": "6 video, 0 image, 0 typography scenes"
+      },
+      {
+        "name": "captions",
+        "status": "pass",
+        "detail": "15 caption events (timing estimated)"
+      },
+      {
+        "name": "fact-check",
+        "status": "warn",
+        "detail": "2 claim(s) need human verification before posting"
+      }
+    ],
+    "stats": {
+      "mean_volume": -18.0,
+      "max_volume": -1.1,
+      "black_seconds": 0
+    },
+    "duration": 26.4
+  },
+  "assets": {
+    "tag": "project-20261117-040925-action",
+    "video_url": "https://github.com/manjunathjadav360-rgb/Auto-reel-ai./releases/download/project-20261117-040925-action/final.mp4",
+    "thumbnail_url": "https://github.com/manjunathjadav360-rgb/Auto-reel-ai./releases/download/project-20261117-040925-action/thumbnail.jpg",
+    "captions_url": "https://github.com/manjunathjadav360-rgb/Auto-reel-ai./releases/download/project-20261117-040925-action/captions.srt",
+    "duration": 26.39
+  },
+  "credits": "Stock media sourced from Pixabay (https://pixabay.com), used under the Pixabay Content License (https://pixabay.com/service/license-summary/). Not generated by AUTO REEL AI.\n\n- Video by TonyDias7 via Pixabay: https://pixabay.com/videos/id-326218/\n- Video by Shravan1991 via Pixabay: https://pixabay.com/videos/id-206294/\n- Video by Darioguzben via Pixabay: https://pixabay.com/videos/id-180776/\n- Video by MoonpetalMedia via Pixabay: https://pixabay.com/videos/id-344179/\n- Video by McZerrill via Pixabay: https://pixabay.com/videos/id-6200/\n- Video by Matthias_Groeneveld via Pixabay: https://pixabay.com/videos/id-258794/",
+  "publish": {
+    "caption": "Waiting until you feel like doing something often guarantees it will never get done. \n\nIn psychology, behavioral activation shows that physical action comes first, and the emotional feeling of motivation follows. Starting a tiny physical step signals your brain that work is underway, kicking off dopamine release.\n\nWhat is one small step you can take today without waiting to feel ready?\n\nStock footage/images: Pixabay (creators: Darioguzben, Matthias_Groeneveld, McZerrill, MoonpetalMedia, Shravan1991, TonyDias7)",
+    "hashtags": [
+      "#psychologyfacts",
+      "#behavioralscience",
+      "#habits",
+      "#mindsetshift",
+      "#productivitytips",
+      "#brainscience",
+      "#motivationmyth",
+      "#dopamine",
+      "#personaldevelopment"
+    ],
+    "suggested_time": "19:00 local time (default; no analytics data yet)",
+    "note": "Manual posting only. Nothing is published automatically."
+  }
+}

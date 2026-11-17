@@ -1,1 +1,15 @@
-{"projects": []}
+{
+  "projects": [
+    {
+      "id": "20261117-035532-animated-story-telling-video",
+      "title": "Animated story telling video",
+      "topic": "Animated story telling video",
+      "style": "educational",
+      "duration_target": 30,
+      "status": "failed",
+      "created_at": "2026-11-17T03:55:32Z",
+      "qa_status": "",
+      "thumbnail_url": ""
+    }
+  ]
+}

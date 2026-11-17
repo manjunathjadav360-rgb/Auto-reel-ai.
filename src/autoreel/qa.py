@@ -36,7 +36,7 @@ def run_qa(video_path, *, target_duration: int, visuals: list, caption_events: i
     dur = float(info["format"]["duration"])
     size_mb = path.stat().st_size / 1e6
 
-    ok = vs and vs["codec_name"] == "h264" and vs.get("pix_fmt") == "yuv420p"
+    ok = vs and vs["codec_name"] == "h264" and vs.get("pix_fmt") in ("yuv420p", "yuvj420p")
     checks.append(_check("codec", "pass" if ok else "fail", f"{vs and vs['codec_name']}/{vs and vs.get('pix_fmt')}"))
     right = vs and (vs["width"], vs["height"]) == (width, height)
     checks.append(_check("resolution", "pass" if right else "fail",

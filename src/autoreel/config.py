@@ -8,6 +8,7 @@ STYLES = {
     "educational": "Clear, curious explainer. One idea, simple words, a surprising-but-true hook.",
     "tech_explainer": "Technology/AI explainer. Concrete, no hype, no unverifiable benchmarks.",
     "cinematic_story": "Short emotional story told in images. Show, don't lecture. A small turn at the end.",
+    "anime_story": "Original Hindi romantic anime short film with expressive 2D anime scenes and an unexpected emotional twist.",
     "motivational": "Grounded motivation. Specific and human, no empty slogans or fake testimonials.",
     "comedy": "Light, observational humour. No stereotypes, no real people, no insults.",
     "product_ad_fictional": ("Demonstration advertisement for a FICTIONAL or unnamed product. "

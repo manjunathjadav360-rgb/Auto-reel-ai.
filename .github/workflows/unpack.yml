@@ -2,9 +2,6 @@ name: Unpack
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - "unpack.trigger"
 
 permissions:
   contents: write
@@ -14,9 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Unzip and commit
+      - name: Unzip and commit if archive is present
         run: |
-          test -f autoreel-app.zip || { echo "::error::autoreel-app.zip is missing from repository root."; exit 1; }
+          if [ ! -f autoreel-app.zip ]; then
+            echo "Application source is already extracted; nothing to do."
+            exit 0
+          fi
           unzip -o autoreel-app.zip
           rm -f autoreel-app.zip
           rm -rf __MACOSX

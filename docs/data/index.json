@@ -1,6 +1,17 @@
 {
   "projects": [
     {
+      "id": "20261117-154319-anuv-jain-s-tu-keh-de-toh-ci",
+      "title": "Anuv Jain Tu Keh De Toh First Listen",
+      "topic": "Anuv Jain's Tu Keh De Toh – cinematic fan-made song appreciation and first-listen hype ree",
+      "style": "cinematic_story",
+      "duration_target": 30,
+      "status": "needs_review",
+      "created_at": "2026-11-17T15:43:19Z",
+      "qa_status": "pass",
+      "thumbnail_url": "https://github.com/manjunathjadav360-rgb/Auto-reel-ai./releases/download/project-20261117-154319-anuv-jain-s-tu-keh-de-toh-ci/thumbnail.jpg"
+    },
+    {
       "id": "20261117-040925-action",
       "title": "Why Action Precedes Motivation",
       "topic": "Action",

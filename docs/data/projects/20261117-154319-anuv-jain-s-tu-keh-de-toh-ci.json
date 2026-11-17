@@ -1,0 +1,322 @@
+{
+  "id": "20261117-154319-anuv-jain-s-tu-keh-de-toh-ci",
+  "created_at": "2026-11-17T15:43:19Z",
+  "status": "needs_review",
+  "topic": "Anuv Jain's Tu Keh De Toh – cinematic fan-made song appreciation and first-listen hype ree",
+  "style": "cinematic_story",
+  "duration_target": 30,
+  "title": "Anuv Jain Tu Keh De Toh First Listen",
+  "error": null,
+  "approval": {
+    "decision": null,
+    "at": null,
+    "note": ""
+  },
+  "log": [
+    {
+      "stage": "script",
+      "ok": true,
+      "seconds": 44.0,
+      "message": ""
+    },
+    {
+      "stage": "narration",
+      "ok": true,
+      "seconds": 2.9,
+      "message": ""
+    },
+    {
+      "stage": "visuals",
+      "ok": true,
+      "seconds": 3.9,
+      "message": ""
+    },
+    {
+      "stage": "music",
+      "ok": true,
+      "seconds": 0.4,
+      "message": ""
+    },
+    {
+      "stage": "render scenes",
+      "ok": true,
+      "seconds": 9.7,
+      "message": ""
+    },
+    {
+      "stage": "assemble",
+      "ok": true,
+      "seconds": 9.3,
+      "message": ""
+    },
+    {
+      "stage": "thumbnail",
+      "ok": true,
+      "seconds": 0.1,
+      "message": ""
+    },
+    {
+      "stage": "quality check",
+      "ok": true,
+      "seconds": 1.1,
+      "message": ""
+    }
+  ],
+  "script": {
+    "title": "Anuv Jain Tu Keh De Toh First Listen",
+    "category": "cinematic_story",
+    "music_mood": "cinematic",
+    "scenes": [
+      {
+        "narration": "Some songs don't just play in the background. They demand absolute silence.",
+        "on_screen_text": "Absolute silence.",
+        "search_query": "person wearing headphones looking out window",
+        "fallback_query": "person with headphones rain"
+      },
+      {
+        "narration": "That first note drops and instantly the whole room fades away.",
+        "on_screen_text": "",
+        "search_query": "dust particles floating in sunlight room",
+        "fallback_query": "sunlight through window dust"
+      },
+      {
+        "narration": "Acoustic guitar strings holding onto every single unspoken word.",
+        "on_screen_text": "Unspoken words.",
+        "search_query": "close up acoustic guitar strings playing",
+        "fallback_query": "guitar strings macro"
+      },
+      {
+        "narration": "The lyrics hit right where you kept your guard up the highest.",
+        "on_screen_text": "",
+        "search_query": "city lights blurred through rain window",
+        "fallback_query": "rain drops window night"
+      },
+      {
+        "narration": "You rewind it just to feel that exact ache one more time.",
+        "on_screen_text": "One more time.",
+        "search_query": "finger pressing play button on phone",
+        "fallback_query": "pressing phone screen"
+      },
+      {
+        "narration": "Some melodies stay long after the track finally fades out.",
+        "on_screen_text": "",
+        "search_query": "empty road misty morning sunrise",
+        "fallback_query": "misty road morning"
+      }
+    ],
+    "caption": "There is a specific kind of quiet that only comes with a first listen to a new Anuv Jain track. The kind where you just sit still and let every single word settle.\n\nWhat was the last song that made you hit repeat immediately?",
+    "hashtags": [
+      "#anuvjain",
+      "#tukehdetoh",
+      "#indieartist",
+      "#acousticmusic",
+      "#newsong",
+      "#musicappreciation",
+      "#songlyrics",
+      "#indiepop",
+      "#musicmood",
+      "#firstlisten"
+    ],
+    "claims_to_verify": [],
+    "disclaimer": ""
+  },
+  "scene_visuals": [
+    {
+      "type": "video",
+      "query": "person wearing headphones looking out window",
+      "asset": {
+        "provider": "pixabay",
+        "asset_id": "40797",
+        "kind": "video",
+        "page_url": "https://pixabay.com/videos/id-40797/",
+        "creator": "yogobunny",
+        "creator_url": "https://pixabay.com/users/yogobunny-16831482/",
+        "width": 3840,
+        "height": 2160,
+        "duration": 16.0,
+        "license_name": "Pixabay Content License"
+      }
+    },
+    {
+      "type": "video",
+      "query": "dust particles floating in sunlight room",
+      "asset": {
+        "provider": "pixabay",
+        "asset_id": "7710",
+        "kind": "video",
+        "page_url": "https://pixabay.com/videos/id-7710/",
+        "creator": "Coverr-Free-Footage",
+        "creator_url": "https://pixabay.com/users/Coverr-Free-Footage-1281706/",
+        "width": 1920,
+        "height": 1080,
+        "duration": 11.0,
+        "license_name": "Pixabay Content License"
+      }
+    },
+    {
+      "type": "video",
+      "query": "close up acoustic guitar strings playing",
+      "asset": {
+        "provider": "pixabay",
+        "asset_id": "379760",
+        "kind": "video",
+        "page_url": "https://pixabay.com/videos/id-379760/",
+        "creator": "flutie8211",
+        "creator_url": "https://pixabay.com/users/flutie8211-17475707/",
+        "width": 1080,
+        "height": 1920,
+        "duration": 5.0,
+        "license_name": "Pixabay Content License"
+      }
+    },
+    {
+      "type": "video",
+      "query": "city lights blurred through rain window",
+      "asset": {
+        "provider": "pixabay",
+        "asset_id": "217105",
+        "kind": "video",
+        "page_url": "https://pixabay.com/videos/id-217105/",
+        "creator": "Matthias_Groeneveld",
+        "creator_url": "https://pixabay.com/users/Matthias_Groeneveld-4535957/",
+        "width": 1080,
+        "height": 1920,
+        "duration": 50.0,
+        "license_name": "Pixabay Content License"
+      }
+    },
+    {
+      "type": "video",
+      "query": "finger pressing play button on phone",
+      "asset": {
+        "provider": "pixabay",
+        "asset_id": "283431",
+        "kind": "video",
+        "page_url": "https://pixabay.com/videos/id-283431/",
+        "creator": "Kanenori",
+        "creator_url": "https://pixabay.com/users/Kanenori-4749850/",
+        "width": 1080,
+        "height": 1920,
+        "duration": 8.0,
+        "license_name": "Pixabay Content License"
+      }
+    },
+    {
+      "type": "video",
+      "query": "empty road misty morning sunrise",
+      "asset": {
+        "provider": "pixabay",
+        "asset_id": "179791",
+        "kind": "video",
+        "page_url": "https://pixabay.com/videos/id-179791/",
+        "creator": "Matthias_Groeneveld",
+        "creator_url": "https://pixabay.com/users/Matthias_Groeneveld-4535957/",
+        "width": 1080,
+        "height": 1920,
+        "duration": 27.0,
+        "license_name": "Pixabay Content License"
+      }
+    }
+  ],
+  "narration": {
+    "engine": "piper",
+    "voice": "en_US-lessac-medium",
+    "license_note": "Piper voice 'en_US-lessac-medium'. Voice-model licences differ: read the MODEL_CARD for this voice in huggingface.co/rhasspy/piper-voices before commercial use (not verified by this project)."
+  },
+  "music": {
+    "source": "synthesised",
+    "mood": "cinematic",
+    "rights": "Original audio generated by AUTO REEL AI; no third-party rights."
+  },
+  "qa": {
+    "status": "pass",
+    "checks": [
+      {
+        "name": "codec",
+        "status": "pass",
+        "detail": "h264/yuv420p"
+      },
+      {
+        "name": "resolution",
+        "status": "pass",
+        "detail": "1080x1920 (need 1080x1920)"
+      },
+      {
+        "name": "frame rate",
+        "status": "pass",
+        "detail": "30.0 fps"
+      },
+      {
+        "name": "audio track",
+        "status": "pass",
+        "detail": "present"
+      },
+      {
+        "name": "duration",
+        "status": "pass",
+        "detail": "23.4s vs 30s target"
+      },
+      {
+        "name": "file size",
+        "status": "pass",
+        "detail": "11.6 MB"
+      },
+      {
+        "name": "loudness",
+        "status": "pass",
+        "detail": "mean -18.7 dB, peak -2.1 dB"
+      },
+      {
+        "name": "clipping",
+        "status": "pass",
+        "detail": "peak -2.1 dB"
+      },
+      {
+        "name": "black frames",
+        "status": "pass",
+        "detail": "0.0s black"
+      },
+      {
+        "name": "stock visuals",
+        "status": "pass",
+        "detail": "6 video, 0 image, 0 typography scenes"
+      },
+      {
+        "name": "captions",
+        "status": "pass",
+        "detail": "15 caption events (timing estimated)"
+      }
+    ],
+    "stats": {
+      "mean_volume": -18.7,
+      "max_volume": -2.1,
+      "black_seconds": 0
+    },
+    "duration": 23.37
+  },
+  "assets": {
+    "tag": "project-20261117-154319-anuv-jain-s-tu-keh-de-toh-ci",
+    "video_url": "https://github.com/manjunathjadav360-rgb/Auto-reel-ai./releases/download/project-20261117-154319-anuv-jain-s-tu-keh-de-toh-ci/final.mp4",
+    "thumbnail_url": "https://github.com/manjunathjadav360-rgb/Auto-reel-ai./releases/download/project-20261117-154319-anuv-jain-s-tu-keh-de-toh-ci/thumbnail.jpg",
+    "captions_url": "https://github.com/manjunathjadav360-rgb/Auto-reel-ai./releases/download/project-20261117-154319-anuv-jain-s-tu-keh-de-toh-ci/captions.srt",
+    "duration": 23.35
+  },
+  "credits": "Stock media sourced from Pixabay (https://pixabay.com), used under the Pixabay Content License (https://pixabay.com/service/license-summary/). Not generated by AUTO REEL AI.\n\n- Video by yogobunny via Pixabay: https://pixabay.com/videos/id-40797/\n- Video by Coverr-Free-Footage via Pixabay: https://pixabay.com/videos/id-7710/\n- Video by flutie8211 via Pixabay: https://pixabay.com/videos/id-379760/\n- Video by Matthias_Groeneveld via Pixabay: https://pixabay.com/videos/id-217105/\n- Video by Kanenori via Pixabay: https://pixabay.com/videos/id-283431/\n- Video by Matthias_Groeneveld via Pixabay: https://pixabay.com/videos/id-179791/",
+  "publish": {
+    "caption": "There is a specific kind of quiet that only comes with a first listen to a new Anuv Jain track. The kind where you just sit still and let every single word settle.\n\nWhat was the last song that made you hit repeat immediately?\n\nStock footage/images: Pixabay (creators: Coverr-Free-Footage, Kanenori, Matthias_Groeneveld, flutie8211, yogobunny)",
+    "hashtags": [
+      "#anuvjain",
+      "#tukehdetoh",
+      "#indieartist",
+      "#acousticmusic",
+      "#newsong",
+      "#musicappreciation",
+      "#songlyrics",
+      "#indiepop",
+      "#musicmood",
+      "#firstlisten"
+    ],
+    "suggested_time": "19:00 local time (default; no analytics data yet)",
+    "note": "Manual posting only. Nothing is published automatically."
+  }
+}

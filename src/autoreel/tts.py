@@ -47,6 +47,11 @@ class PiperEngine:
             raise PipelineError(f"Piper voice {self.voice} was not downloaded")
 
     def synthesize(self, text: str, out_wav) -> None:
+        if re.search(r"[\u0900-\u097F]", text) and self.voice.lower().startswith("en_"):
+            if EspeakEngine.installed():
+                EspeakEngine().synthesize(text, out_wav)
+                return
+            raise PipelineError("Hindi narration needs a Hindi Piper voice or eSpeak NG with Hindi data.")
         self.ensure_voice()
         run([sys.executable, "-m", "piper", "-m", str(self.model), "-f", str(out_wav)],
             input_text=text, timeout=300)
@@ -63,7 +68,8 @@ class EspeakEngine:
         return shutil.which("espeak-ng") is not None
 
     def synthesize(self, text: str, out_wav) -> None:
-        run(["espeak-ng", "-v", "en-us", "-s", "150", "-p", "42", "-w", str(out_wav), "--stdin"],
+        voice = "hi" if re.search(r"[\u0900-\u097F]", text) else "en-us"
+        run(["espeak-ng", "-v", voice, "-s", "145", "-p", "48", "-w", str(out_wav), "--stdin"],
             input_text=text, timeout=120)
 
 

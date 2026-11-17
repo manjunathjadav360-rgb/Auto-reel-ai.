@@ -134,7 +134,7 @@ class GeminiClient:
                 inline = part.get("inlineData") or part.get("inline_data")
                 if inline and inline.get("data"):
                     raw = base64.b64decode(inline["data"], validate=True)
-                    if raw.startswith(b"\\xff\\xd8\\xff") or raw.startswith(b"\\x89PNG"):
+                    if raw.startswith(bytes.fromhex("ffd8ff")) or raw.startswith(bytes.fromhex("89504e47")):
                         return raw
             raise GeminiError("Gemini returned no image data")
         except (ValueError, KeyError, IndexError, TypeError):

@@ -37,7 +37,8 @@ def generate_anime_scenes(gemini, scenes: list, work_dir) -> list:
                 f"Anime illustration generation failed on scene {index}: {type(exc).__name__}. "
                 "Check Gemini image-model access/quota and retry."
             ) from None
-        path = folder / f"anime_scene_{index:02d}.jpg"
+        suffix = ".jpg" if data.startswith(bytes.fromhex("ffd8ff")) else ".png"
+        path = folder / f"anime_scene_{index:02d}{suffix}"
         path.write_bytes(data)
         visuals.append({"type": "image", "path": str(path), "asset": None,
                         "query": "AI-generated original 2D anime illustration", "color": "0x241b2f"})

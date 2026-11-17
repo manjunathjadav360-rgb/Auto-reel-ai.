@@ -22,7 +22,8 @@ MIN_DURATION, MAX_DURATION = 10, 120
 @dataclass
 class Settings:
     gemini_api_key: str = ""
-    gemini_models: tuple = ("gemini-2.5-flash", "gemini-2.5-flash-lite")
+    # Keep the dataclass defaults aligned with GeminiClient and current AI Studio model availability.
+    gemini_models: tuple = ("gemini-3.8-flash", "gemini-3.5-flash-lite")
     output_root: Path = Path("output")
     data_dir: Path = Path("docs/data")
     cache_dir: Path = Path("cache")

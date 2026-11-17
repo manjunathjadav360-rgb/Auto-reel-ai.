@@ -20,8 +20,13 @@ def _valid_video(path) -> bool:
         return False
 
 
-def resolve_visuals(media, scenes: list, durations: list, work_dir, style: str, seed: int = 0) -> list:
+def resolve_visuals(media, scenes: list, durations: list, work_dir, style: str, seed: int = 0, gemini=None) -> list:
     """Return one dict per scene: {type, path, asset, query, color}."""
+    if style == "anime_story":
+        if gemini is None:
+            raise RuntimeError("Anime story mode needs the Gemini image generator.")
+        from .anime import generate_anime_scenes
+        return generate_anime_scenes(gemini, scenes, work_dir)
     assets_dir = Path(work_dir) / "media"
     used, out = set(), []
     force_text = style == "typography_quote"

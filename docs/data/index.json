@@ -1,6 +1,17 @@
 {
   "projects": [
     {
+      "id": "20261117-040136-storytelling-video",
+      "title": "Storytelling video",
+      "topic": "Storytelling video",
+      "style": "educational",
+      "duration_target": 30,
+      "status": "failed",
+      "created_at": "2026-11-17T04:01:36Z",
+      "qa_status": "",
+      "thumbnail_url": ""
+    },
+    {
       "id": "20261117-035856-storytelling-video",
       "title": "Storytelling video",
       "topic": "Storytelling video",

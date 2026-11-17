@@ -1,0 +1,134 @@
+name: Studio
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "What to do"
+        required: true
+        type: choice
+        default: generate
+        options: [generate, research, decide]
+      topic:
+        description: "Video topic (generate)"
+        required: false
+        type: string
+        default: ""
+      duration:
+        description: "Length in seconds (generate)"
+        required: false
+        type: choice
+        default: "30"
+        options: ["15", "30", "45", "60", "90"]
+      style:
+        description: "Style (generate / research)"
+        required: false
+        type: choice
+        default: educational
+        options: [educational, tech_explainer, cinematic_story, motivational, comedy, product_ad_fictional, typography_quote, festival]
+      project_id:
+        description: "Project id (decide)"
+        required: false
+        type: string
+        default: ""
+      decision:
+        description: "Decision (decide)"
+        required: false
+        type: choice
+        default: approve
+        options: [approve, reject]
+      note:
+        description: "Optional note (decide)"
+        required: false
+        type: string
+        default: ""
+  schedule:
+    - cron: "17 5 * * *"      # daily idea research only; never generates or posts. Delete these 2 lines to turn off.
+
+permissions:
+  contents: write
+
+concurrency:
+  group: studio
+  cancel-in-progress: false
+
+jobs:
+  studio:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      # User input is passed ONLY through env vars, never pasted into shell text.
+      ACTION: ${{ github.event_name == 'schedule' && 'research' || inputs.action }}
+      TOPIC: ${{ inputs.topic }}
+      DURATION: ${{ inputs.duration }}
+      STYLE: ${{ inputs.style || 'educational' }}
+      PROJECT_ID: ${{ inputs.project_id }}
+      DECISION: ${{ inputs.decision }}
+      NOTE: ${{ inputs.note }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install video tools (generate only)
+        if: env.ACTION == 'generate'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg espeak-ng fonts-dejavu-core
+          pip install -r requirements.txt
+          pip install -r requirements-tts.txt || echo "::warning::Piper could not be installed; falling back to eSpeak NG (robotic voice)."
+
+      - name: Cache Piper voice (generate only)
+        if: env.ACTION == 'generate'
+        uses: actions/cache@v4
+        with:
+          path: cache/voices
+          key: piper-voice-v1
+
+      - name: Environment check
+        if: env.ACTION == 'generate'
+        run: python -m src.autoreel doctor
+
+      - name: Generate video
+        id: gen
+        if: env.ACTION == 'generate'
+        run: python -m src.autoreel generate --topic "$TOPIC" --duration "$DURATION" --style "$STYLE"
+
+      - name: Upload video to a GitHub Release
+        id: release
+        if: env.ACTION == 'generate' && steps.gen.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PID: ${{ steps.gen.outputs.project_id }}
+          TITLE: ${{ steps.gen.outputs.title_text }}
+        run: |
+          gh release create "project-$PID" \
+            "output/$PID/final.mp4" "output/$PID/thumbnail.jpg" "output/$PID/captions.srt" \
+            --title "$TITLE" --notes "AUTO REEL AI project $PID. Review and approve in the dashboard." --prerelease
+
+      - name: Research ideas
+        if: env.ACTION == 'research'
+        run: python -m src.autoreel research --category "$STYLE" --count 6
+
+      - name: Record decision
+        if: env.ACTION == 'decide'
+        run: python -m src.autoreel set-status --id "$PROJECT_ID" --decision "$DECISION" --note "$NOTE"
+
+      - name: Save history to the repository
+        if: always() && steps.release.outcome != 'failure'
+        run: |
+          git config user.name "autoreel-bot"
+          git config user.email "autoreel-bot@users.noreply.github.com"
+          git add docs/data
+          if git diff --cached --quiet; then echo "Nothing to commit"; exit 0; fi
+          git commit -m "autoreel: $ACTION"
+          for i in 1 2 3; do
+            git pull --rebase origin "${GITHUB_REF_NAME}" && git push && exit 0
+            sleep 5
+          done
+          exit 1

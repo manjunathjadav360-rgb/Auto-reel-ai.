@@ -80,7 +80,7 @@ def generate_project(settings: Settings, topic: str, duration: int, style: str, 
         total = editor.total_length(durations, T)
 
         with slog.stage("visuals"):
-            visuals = resolve_visuals(media, scenes, durations, work, style, seed=sum(map(ord, topic)))
+            visuals = resolve_visuals(media, scenes, durations, work, style, seed=sum(map(ord, topic)), gemini=gemini)
             if media is None:
                 slog.note("visuals", "No media provider configured; all scenes are typography cards.")
             elif media.issues:

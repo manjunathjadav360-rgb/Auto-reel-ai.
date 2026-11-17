@@ -8,6 +8,7 @@ the next model in GEMINI_MODELS.
 """
 from __future__ import annotations
 
+import base64
 import json
 import logging
 import re
@@ -105,6 +106,39 @@ class GeminiClient:
                 failures.append(f"{model}: {exc}")
                 log.warning("Gemini model %s failed: %s", model, exc)
         raise GeminiError("All Gemini models failed. " + " || ".join(failures))
+
+
+    def generate_image(self, prompt: str, *, model: str = "gemini-3.1-flash-image") -> bytes:
+        """Generate a 9:16 JPEG illustration with Gemini image generation."""
+        payload = {
+            "contents": [{"role": "user", "parts": [{"text": prompt}]}],
+            "generationConfig": {
+                "responseModalities": ["TEXT", "IMAGE"],
+                "imageConfig": {"aspectRatio": "9:16", "imageSize": "1K"},
+            },
+        }
+        url = f"{BASE}{model}:generateContent"
+        try:
+            resp = safehttp.fetch(
+                url, allowed=_allowed, method="POST",
+                headers={"Content-Type": "application/json", "x-goog-api-key": self._key},
+                data=json.dumps(payload).encode("utf-8"), timeout=180, max_bytes=15_000_000,
+            )
+        except (safehttp.UnsafeRedirect, safehttp.NetworkError) as exc:
+            raise GeminiError(f"image generation network error ({type(exc).__name__})") from None
+        if resp.status != 200:
+            raise GeminiError(f"image generation request failed ({resp.status}): {_error_text(resp, self._key)}")
+        try:
+            data = json.loads(resp.body)
+            for part in data["candidates"][0]["content"]["parts"]:
+                inline = part.get("inlineData") or part.get("inline_data")
+                if inline and inline.get("data"):
+                    raw = base64.b64decode(inline["data"], validate=True)
+                    if raw.startswith(b"\\xff\\xd8\\xff") or raw.startswith(b"\\x89PNG"):
+                        return raw
+            raise GeminiError("Gemini returned no image data")
+        except (ValueError, KeyError, IndexError, TypeError):
+            raise GeminiError("Gemini returned an unreadable image response") from None
 
     def _try_model(self, model: str, body: bytes) -> Any:
         url = f"{BASE}{model}:generateContent"

@@ -25,7 +25,7 @@ on:
         required: false
         type: choice
         default: educational
-        options: [educational, tech_explainer, cinematic_story, motivational, comedy, product_ad_fictional, typography_quote, festival]
+        options: [educational, tech_explainer, cinematic_story, anime_story, motivational, comedy, product_ad_fictional, typography_quote, festival]
       project_id:
         description: "Project id (decide)"
         required: false

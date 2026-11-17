@@ -8,8 +8,11 @@
   var TABS = [["review", "Review"], ["library", "Library"], ["ideas", "Ideas"], ["create", "Create"], ["settings", "Settings"]];
 
   function loadCfg() {
-    try { return Object.assign({}, DEFAULTS, JSON.parse(localStorage.getItem(KEY) || "{}")); }
-    catch (e) { return Object.assign({}, DEFAULTS); }
+    try {
+      var cfg = Object.assign({}, DEFAULTS, JSON.parse(localStorage.getItem(KEY) || "{}"));
+      if (cfg.owner === "manjunathjadav360-rgb" && cfg.repo === "Auto-reel-ai") cfg.repo = "Auto-reel-ai.";
+      return cfg;
+    } catch (e) { return Object.assign({}, DEFAULTS); }
   }
   function saveCfg(c) { localStorage.setItem(KEY, JSON.stringify(c)); }
 

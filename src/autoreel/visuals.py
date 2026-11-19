@@ -16,17 +16,20 @@ def _valid_video(path) -> bool:
     try:
         streams = probe(path).get("streams", [])
         return any(s.get("codec_type") == "video" and s.get("width") for s in streams)
-    except Exception:           # noqa: BLE001 - any probe failure means "unusable"
+    except Exception:
         return False
 
 
 def resolve_visuals(media, scenes: list, durations: list, work_dir, style: str, seed: int = 0, gemini=None) -> list:
-    """Return one dict per scene: {type, path, asset, query, color}."""
+    """Return one dict per scene: {type, path, asset, query, color, style}."""
     if style == "anime_story":
         if gemini is None:
             raise RuntimeError("Anime story mode needs the Gemini image generator.")
         from .anime import generate_anime_scenes
-        return generate_anime_scenes(gemini, scenes, work_dir)
+        results = generate_anime_scenes(gemini, scenes, work_dir)
+        for item in results:
+            item["style"] = style
+        return results
     assets_dir = Path(work_dir) / "media"
     used, out = set(), []
     force_text = style == "typography_quote"
@@ -40,6 +43,7 @@ def resolve_visuals(media, scenes: list, durations: list, work_dir, style: str, 
                 if chosen["type"] != "text":
                     break
         chosen["color"] = color
+        chosen["style"] = style
         log.info("scene %d -> %s (%s)", i + 1, chosen["type"], chosen.get("query") or "no query")
         out.append(chosen)
     return out

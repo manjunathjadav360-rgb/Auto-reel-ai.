@@ -4,7 +4,7 @@ from pathlib import Path
 
 from src.autoreel.config import Settings
 from src.autoreel import editor, qa
-from src.autoreel.captions import build_ass, chunk_words, srt_time, ass_time, esc
+from src.autoreel.captions import build_ass, chunk_words, srt_time, ass_time, esc, _animated_caption
 from src.autoreel.music import synth_music, choose_music
 from src.autoreel.util import media_duration, probe
 from tests.helpers import make_clip, make_image, make_voice
@@ -27,6 +27,14 @@ class CaptionTests(unittest.TestCase):
         ass, srt, n = build_ass(1080, 1920, scenes, 5, "Fictional demonstration advertisement")
         self.assertIn("BIG IDEA", ass); self.assertIn("Fictional demonstration", ass)
         self.assertEqual(n, 1); self.assertIn("Hello there friend", srt)
+        self.assertIn(r"\fad(110,100)", ass)
+        self.assertIn(r"\c&H0000D7FF&", ass)
+
+    def test_caption_animation_is_ass_escaped(self):
+        animated = _animated_caption("Clean edits feel intentional")
+        self.assertTrue(animated.startswith(r"{\fad(110,100)"))
+        self.assertIn("Clean", animated)
+        self.assertIn(r"\fscx92", animated)
 
 
 class MusicTests(unittest.TestCase):
@@ -48,14 +56,20 @@ class MusicTests(unittest.TestCase):
 
 
 class EditorEndToEnd(unittest.TestCase):
+    def test_editor_selects_style_matched_transition_sequence(self):
+        self.assertEqual(editor.transition_for("cinematic_story", 1), "fade")
+        self.assertEqual(editor.transition_for("cinematic_story", 2), "dissolve")
+        self.assertEqual(editor.transition_for("anime_story", 1), "pixelize")
+        self.assertEqual(editor.transition_for("unknown", 1), "fade")
+
     def test_full_assembly_and_qa(self):
         s = Settings()
         with tempfile.TemporaryDirectory() as d:
             d = Path(d)
             clip, img = make_clip(d / "clip.mp4", 3), make_image(d / "img.jpg")
-            visuals = [{"type": "video", "path": clip, "color": "0x14213d"},      # shorter than scene -> loops
-                       {"type": "image", "path": img, "color": "0x14213d"},
-                       {"type": "text", "path": None, "color": "0x1b2a41"}]
+            visuals = [{"type": "video", "path": clip, "color": "0x14213d", "style": "cinematic_story"},
+                       {"type": "image", "path": img, "color": "0x14213d", "style": "cinematic_story"},
+                       {"type": "text", "path": None, "color": "0x1b2a41", "style": "cinematic_story"}]
             narr_secs = [3.0, 2.5, 2.0]
             narr = [make_voice(d / f"n{i}.wav", t) for i, t in enumerate(narr_secs)]
             durs = [editor.scene_duration(t, s.transition_seconds) for t in narr_secs]
@@ -67,9 +81,11 @@ class EditorEndToEnd(unittest.TestCase):
                     {"narration": "Water rises and falls twice daily", "audio_dur": narr_secs[1], "text_scene": False},
                     {"narration": "Simple physics, endless motion", "audio_dur": narr_secs[2], "text_scene": True}]
             out = d / "final.mp4"
-            res = editor.assemble(files, narr, durs, info, music, d, out, s, "Fictional demonstration advertisement")
+            res = editor.assemble(files, narr, durs, info, music, d, out, s, "Fictional demonstration advertisement",
+                                  style="cinematic_story")
             expected = sum(durs) - 2 * s.transition_seconds
             self.assertAlmostEqual(media_duration(out), expected, delta=0.2)
+            self.assertEqual(res["transitions"], ["fade", "dissolve"])
             streams = {x["codec_type"]: x for x in probe(out)["streams"]}
             self.assertEqual((streams["video"]["width"], streams["video"]["height"]), (1080, 1920))
             self.assertEqual(streams["video"]["codec_name"], "h264")

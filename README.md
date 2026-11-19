@@ -3,8 +3,13 @@
 Topic -> Gemini script -> Pixabay stock visuals -> narration -> captions, music, transitions -> 9:16 MP4,
 with a review dashboard and manual approval. Runs on GitHub Actions and is controlled from any browser.
 
-**Honest scope:** this assembles stock footage/images, typography and synthetic narration into a Reel.
-It does not generate AI video. Nothing is ever posted to Instagram automatically.
+**Editing upgrades:** restrained style-matched colour grades, subtle motion crops for stock video, varied
+scene transitions selected by format, animated caption and kicker reveals, original background scoring,
+voice/music ducking, and export QA.
+
+**Honest scope:** this assembles stock footage, generated still artwork for selected story modes, typography
+and synthetic narration into a Reel. It does not yet generate continuous AI video. Nothing is ever posted
+to Instagram automatically.
 
 ## First-time setup
 
@@ -30,7 +35,7 @@ Settings. It is stored only in that browser. Without a token, the dashboard is r
 
 ## Limits and safety
 
-- **No AI video generation:** scenes use stock footage/images and typography cards.
+- **No continuous AI video generation yet:** most scenes use stock video; selected anime-story scenes use generated images with camera motion.
 - **Gemini free tier:** limits change. Free-tier prompts may be used by Google to improve its models; do not
   submit confidential topics.
 - **Pixabay:** respect its licence and avoid misleading endorsements involving recognisable people or brands.
@@ -40,7 +45,7 @@ Settings. It is stored only in that browser. Without a token, the dashboard is r
   Check each Piper voice's licence before commercial use.
 - **Music:** generated ambient music is original but modest. Files in `assets/music/` are user-supplied and
   flagged as rights-unverified.
-- **Captions:** timing is estimated per scene, not aligned word-by-word.
+- **Captions:** animated chunks use estimated timing, not word-level forced alignment. Review before posting.
 - **Instagram:** no automatic posting is implemented.
 
 ## Commands (desktop)

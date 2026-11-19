@@ -227,7 +227,7 @@
       if (errs.length) { out.replaceChildren(msg("err", errs.join(" "))); return; }
       out.replaceChildren(msg("ok", "Sending…"));
       dispatch({ action: "generate", topic: topic.value.replace(/\s+/g, " ").trim(), duration: dur.value, style: style.value })
-        .then(function () { out.replaceChildren(msg("ok", "Started. Rendering takes roughly 5-15 minutes. Check progress on GitHub, then open Review.")); })
+        .then(function () { out.replaceChildren(msg("ok", "Your Reel is in production on GitHub's cloud runner. A recent 30-second render finished in under 2 minutes; a fresh or busy runner can take longer."), h("a", { href: AR.workflowPage(cfg), text: "Watch production in GitHub Actions" })); })
         .catch(function (e) { out.replaceChildren(msg("err", e.message)); });
     } });
     app.appendChild(h("h2", { text: "Create a video" }));

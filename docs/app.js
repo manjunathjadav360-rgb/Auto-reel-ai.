@@ -122,6 +122,8 @@
           h("a", { class: "btn primary", href: a.video_url, download: true, text: "Download MP4" }),
           h("a", { class: "btn", href: a.thumbnail_url, download: true, text: "Thumbnail" }),
           h("a", { class: "btn", href: a.captions_url, download: true, text: "Captions (.srt)" })));
+        if (a.transitions && a.transitions.length)
+          app.appendChild(h("p", { class: "mut", text: "Editorial transitions: " + a.transitions.join(" → ") }));
       }
       decisionBox(p);
       if (p.publish) publishBox(p);

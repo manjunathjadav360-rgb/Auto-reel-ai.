@@ -99,7 +99,7 @@ def generate_project(settings: Settings, topic: str, duration: int, style: str, 
                      "kicker": sc["on_screen_text"]} for sc, ad, v in zip(scenes, audio_durs, visuals)]
             final = out_dir / "final.mp4"
             res = editor.assemble(scene_files, narr_files, durations, info, music_path, work, final,
-                                  settings, script.get("disclaimer", ""))
+                                  settings, script.get("disclaimer", ""), style=style)
             shutil.copy(work / "captions.srt", out_dir / "captions.srt")
 
         with slog.stage("thumbnail"):
@@ -123,7 +123,7 @@ def generate_project(settings: Settings, topic: str, duration: int, style: str, 
         project.update({
             "status": "qa_failed" if report["status"] == "fail" else "needs_review",
             "title": script["title"], "script": script,
-            "scene_visuals": [{"type": v["type"], "query": v.get("query", ""),
+            "scene_visuals": [{"type": v["type"], "query": v.get("query", ""), "style": v.get("style", style),
                                "asset": ({k: v["asset"].to_dict()[k] for k in
                                           ("provider", "asset_id", "kind", "page_url", "creator", "creator_url",
                                            "width", "height", "duration", "license_name")} if v["asset"] else None)}
@@ -131,13 +131,14 @@ def generate_project(settings: Settings, topic: str, duration: int, style: str, 
             "narration": {"engine": tts.name, "voice": getattr(tts, "voice", ""), "license_note": tts.license_note},
             "music": music_info, "qa": report,
             "assets": {"tag": tag, "video_url": f"{base}/final.mp4", "thumbnail_url": f"{base}/thumbnail.jpg",
-                       "captions_url": f"{base}/captions.srt", "duration": round(total, 2)},
+                       "captions_url": f"{base}/captions.srt", "duration": round(total, 2),
+                       "transitions": res.get("transitions", [])},
             "credits": credits_text(used),
             "publish": {"caption": caption, "hashtags": script["hashtags"],
                         "suggested_time": settings.publish_time_note,
                         "note": "Manual posting only. Nothing is published automatically."},
         })
-    except Exception as exc:            # noqa: BLE001 - recorded, then re-raised
+    except Exception as exc:
         project["status"] = "failed"
         project["error"] = redact(str(exc) or type(exc).__name__, settings.secrets)
         log.error("Project %s failed: %s", pid, project["error"])

@@ -9,6 +9,7 @@
     educational: "Educational",
     tech_explainer: "Tech / AI explainer",
     cinematic_story: "Cinematic story",
+    anime_story: "Hindi anime story",
     motivational: "Motivational",
     comedy: "Comedy",
     product_ad_fictional: "Fictional product ad",

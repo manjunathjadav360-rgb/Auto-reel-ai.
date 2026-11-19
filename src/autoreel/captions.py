@@ -1,9 +1,4 @@
-"""Caption chunking and ASS/SRT generation.
-
-Timing is ESTIMATED: each scene has its own narration clip, and its words are
-spread over that clip in proportion to character count. This stays close for
-single scenes but is not forced alignment (Whisper alignment is a pending upgrade).
-"""
+"""Caption chunking and ASS/SRT generation with subtle kinetic reveals."""
 from __future__ import annotations
 
 import re
@@ -17,7 +12,7 @@ ScaledBorderAndShadow: yes
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Cap,DejaVu Sans,64,&H00FFFFFF,&H000000FF,&H00101010,&H80000000,-1,0,0,0,100,100,0,0,1,5,2,2,90,90,470,1
+Style: Cap,DejaVu Sans,68,&H00FFFFFF,&H000000FF,&H00101010,&H80000000,-1,0,0,0,100,100,0,0,1,5,3,2,90,90,470,1
 Style: Card,DejaVu Sans,86,&H00FFFFFF,&H000000FF,&H00101010,&H80000000,-1,0,0,0,100,100,0,0,1,6,3,5,110,110,0,1
 Style: Kicker,DejaVu Sans,50,&H0000D7FF,&H000000FF,&H00101010,&H80000000,-1,0,0,0,100,100,2,0,1,4,2,8,90,90,230,1
 Style: Disc,DejaVu Sans,32,&H00E0E0E0,&H000000FF,&H00101010,&H80000000,0,0,0,0,100,100,0,0,1,3,1,8,60,60,70,1
@@ -61,7 +56,7 @@ def chunk_words(text: str, max_words: int = 5, max_chars: int = 32) -> list:
             cur = []
     if cur:
         if chunks and len(cur) == 1:
-            chunks[-1] += " " + cur[0]       # avoid a lonely last word
+            chunks[-1] += " " + cur[0]
         else:
             chunks.append(" ".join(cur))
     return chunks
@@ -79,19 +74,30 @@ def scene_events(narration: str, audio_start: float, audio_dur: float) -> list:
     return events
 
 
+def _animated_caption(text: str) -> str:
+    """Scale/fade a caption in and accent its opening word."""
+    words = text.split()
+    if not words:
+        return ""
+    animated = r"{\fad(110,100)\fscx92\fscy92\t(0,150,\fscx100\fscy100)}"
+    accent = r"{\c&H0000D7FF&}" + esc(words[0]) + r"{\c&H00FFFFFF&}"
+    rest = " ".join(esc(word) for word in words[1:])
+    return animated + accent + ((" " + rest) if rest else "")
+
+
 def build_ass(width: int, height: int, scenes: list, total: float, disclaimer: str = "") -> tuple:
-    """scenes: [{start, audio_start, audio_dur, narration, text_scene, kicker}] on the GLOBAL timeline.
-    Returns (ass_text, srt_text, event_count)."""
+    """scenes: [{start, audio_start, audio_dur, narration, text_scene, kicker}] on the GLOBAL timeline."""
     lines, srt, n = [HEADER.format(w=width, h=height)], [], 0
     for sc in scenes:
         style = "Card" if sc.get("text_scene") else "Cap"
         for (a, b, text) in scene_events(sc["narration"], sc["audio_start"], sc["audio_dur"]):
             n += 1
-            lines.append(f"Dialogue: 0,{ass_time(a)},{ass_time(b)},{style},,0,0,0,,{esc(text)}")
+            lines.append(f"Dialogue: 0,{ass_time(a)},{ass_time(b)},{style},,0,0,0,,{_animated_caption(text)}")
             srt.append(f"{n}\n{srt_time(a)} --> {srt_time(b)}\n{text}\n")
         if sc.get("kicker"):
+            kicker = r"{\fad(240,190)\fscx88\fscy88\t(0,180,\fscx100\fscy100)}"
             lines.append(f"Dialogue: 1,{ass_time(sc['start'] + 0.2)},{ass_time(sc['start'] + min(3.0, sc['dur'] - 0.2))},"
-                         f"Kicker,,0,0,0,,{{\\fad(250,250)}}{esc(sc['kicker'].upper())}")
+                         f"Kicker,,0,0,0,,{kicker}{esc(sc['kicker'].upper())}")
     if disclaimer:
         lines.append(f"Dialogue: 2,{ass_time(0)},{ass_time(total)},Disc,,0,0,0,,{esc(disclaimer)}")
     return "\n".join(lines) + "\n", "\n".join(srt), n
